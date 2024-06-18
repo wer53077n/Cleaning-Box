@@ -18,66 +18,13 @@ bot.on('message', async (event) => {
 	}
 
 	if (event.message.type === 'text') {
-		const userMessage = event.message.text.trim()
-		if (userMessage === '前端') {
+		if (event.message.text === '前端') {
 			commandFE(event)
-		} else if (userMessage === 'qr') {
-			event.reply({
-				type: 'text',
-				text: '了解更多',
-				quickReply: {
-					items: [
-						{
-							type: 'action',
-							action: {
-								type: 'message',
-								text: 'message text',
-								label: 'taipei'
-							}
-						},
-						{
-							type: 'action',
-							action: {
-								type: 'uri',
-								uri: 'https://wdaweb.github.io',
-								label: '職訓'
-							}
-						},
-						{
-							type: 'action',
-							action: {
-								type: 'postback',
-								label: 'postback',
-								data: 'aaa'
-							}
-						}
-					]
-				}
-			})
-		} else if (userMessage === '附近的垃圾桶在哪?') {
-			// 請求用戶分享位置訊息
-			await event.reply({
-				type: 'template',
-				altText: 'Share your location',
-				template: {
-					type: 'buttons',
-					thumbnailImageUrl: 'YOUR_IMAGE_URL',
-					title: 'Share Location',
-					text: 'Click to share your location',
-					actions: [
-						{
-							type: 'location',
-							label: 'Share Location'
-						}
-					]
-				}
-			})
 		}
 	} else if (event.message.type === 'location') {
 		commandClean(event)
 	}
 })
-
 bot.on('postback', (event) => {
 	console.log(event)
 	event.reply('aaa')
